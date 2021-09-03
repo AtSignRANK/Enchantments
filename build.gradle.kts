@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.5.0"
+    kotlin("jvm") version "1.5.30"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 group = "org.example"
@@ -12,44 +13,20 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation("io.github.monun:kommand-api:2.6.5") // May be I will add command
+
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 }
 
 
-val shade = configurations.create("shade")
-shade.extendsFrom(configurations.implementation.get())
-
 tasks {
-
-    javadoc {
-        options.encoding = "UTF-8"
-    }
-
-    compileJava {
-        options.encoding = "UTF-8"
-    }
-
     compileKotlin {
-        kotlinOptions.jvmTarget = "16"
-    }
-    
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "16"
-    }
-    
-    processResources {
-        filesMatching("*.yml") {
-            expand(project.properties)
-        }
-    }
-    
-    create<Jar>("sourceJar") {
-        archiveClassifier.set("source")
-        from(sourceSets["main"].allSource)
+        kotlinOptions.jvmTarget = "16" // JDK 버전
     }
 
-    jar {
-        from (shade.map { if (it.isDirectory) it else zipTree(it) })
+    shadowJar {
+        archiveBaseName.set(project.name)
+        archiveClassifier.set("")
+        archiveVersion.set("")
     }
 }
-

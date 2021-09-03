@@ -1,3 +1,8 @@
-name: ExamplePlugin
-main: org.example.explugin.ExPlugin
-version: 1.0.0
+name: Enchant-Plugin
+main: io.github.rank.plugin.EnchantPlugin
+version: 1.17.1
+api-version: 1.17
+
+commands:
+  enchant:
+    permission: op
