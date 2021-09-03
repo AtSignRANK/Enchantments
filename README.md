@@ -1,4 +1,2 @@
-# Kotlin Paper Template
-Template For PaperMC (Kotlin)
-
-You can use this Template
+# Enchantments
+- 2021/09/03 Add Enchantments : Energy(에너지)
