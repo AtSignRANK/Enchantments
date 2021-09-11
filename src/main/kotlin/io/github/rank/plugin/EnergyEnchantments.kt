@@ -99,7 +99,7 @@ private fun Int.toRomanNumerals() = when (this) {
     8 -> "VIII"
     9 -> "IX"
     10 -> "X"
-    else -> toString()
+    else -> "enchantment.level.${this}"
 }
 
 private fun ItemStack.isSimilarLore(other: ItemStack): Boolean {
